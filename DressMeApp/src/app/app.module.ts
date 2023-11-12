@@ -7,10 +7,26 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { LoginComponent } from './componentes/auth/login/login.component';
+import { DashboardComponent } from './componentes/admin/dashboard/dashboard.component';
+import { AdminCatalogoComponent } from './componentes/admin/admin-catalogo/admin-catalogo.component';
+import { CatalogoComponent } from './componentes/usuario/catalogo/catalogo.component';
+import { TurnoComponent } from './componentes/usuario/turno/turno.component';
+import { HeaderComponent } from './componentes/usuario/header/header.component';
+import { FooterComponent } from './componentes/usuario/footer/footer.component';
+import { NavbarComponent } from './componentes/admin/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    AdminCatalogoComponent,
+    CatalogoComponent,
+    TurnoComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

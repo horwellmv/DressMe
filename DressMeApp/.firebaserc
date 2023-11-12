@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pp3-proyecto"
+  },
+  "targets": {
+    "pp3-proyecto": {
+      "hosting": {
+        "DressMeApp": [
+          "pp3-proyecto"
+        ]
+      }
+    }
   }
 }

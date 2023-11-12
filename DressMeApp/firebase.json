@@ -5,5 +5,12 @@
   },
   "storage": {
     "rules": "storage.rules"
-  }
+  },
+  "hosting": [
+    {
+      "target": "DressMeApp",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
 }

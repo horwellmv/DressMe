@@ -1,1 +1,26 @@
 <app-navbar></app-navbar>
+<br>
+<h2>Reportes...</h2>
+<br>
+<section>
+    <h1>Turnos del dia</h1>
+    <ul>
+        <li *ngFor="let user of users$ | async">
+            {{user.username}}
+        </li>
+    </ul>
+</section>
+<br>
+<section>
+    <h1>Usuarios desde Firebase</h1>
+    <ul>
+        <li *ngFor="let usuario of usuarios$ | async">
+            {{usuario.nombre}},
+            {{usuario.email}},
+            
+        </li>
+    </ul>
+</section>
+
+<button (click)="addUsuario()" >Add usuario</button>
+

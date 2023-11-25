@@ -19,6 +19,7 @@ import { HeaderComponent } from './componentes/usuario/header/header.component';
 import { FooterComponent } from './componentes/usuario/footer/footer.component';
 import { NavbarComponent } from './componentes/admin/navbar/navbar.component';
 import { SpinnerComponent } from './componentes/auth/spinner/spinner.component';
+import { NuevoArticuloComponent } from './componentes/admin/nuevo-articulo/nuevo-articulo.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SpinnerComponent } from './componentes/auth/spinner/spinner.component';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NuevoArticuloComponent
   ],
   imports: [
     BrowserModule,

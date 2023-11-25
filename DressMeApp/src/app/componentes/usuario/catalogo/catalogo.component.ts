@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ArticuloService } from 'src/app/servicios/articulo.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent {
+  
+  listaArticulos: any []=[]; 
+
+  constructor(private articuloServ: ArticuloService){}
+  
+  ngOnInit(): void {
+    this.articuloServ.traerArticulos().subscribe(articulos =>{
+      console.log('Articulos recibidios desde Firestore => ', articulos);
+      this.listaArticulos = articulos;
+    });
+  }
 
 }

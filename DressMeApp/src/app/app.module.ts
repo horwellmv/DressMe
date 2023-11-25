@@ -20,6 +20,10 @@ import { FooterComponent } from './componentes/usuario/footer/footer.component';
 import { NavbarComponent } from './componentes/admin/navbar/navbar.component';
 import { SpinnerComponent } from './componentes/auth/spinner/spinner.component';
 import { NuevoArticuloComponent } from './componentes/admin/nuevo-articulo/nuevo-articulo.component';
+import { LandinPageComponent } from './componentes/usuario/landin-page/landin-page.component';
+import { CajaComponent } from './componentes/admin/caja/caja.component';
+import { PerfilesComponent } from './componentes/admin/perfiles/perfiles.component';
+import { AlquileresComponent } from './componentes/admin/alquileres/alquileres.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { NuevoArticuloComponent } from './componentes/admin/nuevo-articulo/nuevo
     FooterComponent,
     NavbarComponent,
     SpinnerComponent,
-    NuevoArticuloComponent
+    NuevoArticuloComponent,
+    LandinPageComponent,
+    CajaComponent,
+    PerfilesComponent,
+    AlquileresComponent,
   ],
   imports: [
     BrowserModule,

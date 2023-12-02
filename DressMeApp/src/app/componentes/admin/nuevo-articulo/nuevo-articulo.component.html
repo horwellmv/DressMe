@@ -1,0 +1,130 @@
+<!-- FORMULARIO -->
+
+<form  *ngIf="!adjuntar" (ngSubmit)="crearForm()" [formGroup]="ArticuloForm">
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="../../../../assets/background.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Administrador de catalogo</h1>
+                <p class="lead">Datos del nuevo articulo</p>
+
+                <!-- Titulo -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Titulo</span>
+                    <input type="text" class="form-control" formControlName="titulo" placeholder="Traje negro Marmaduck"
+                        aria-describedby="basic-addon1">
+                    <span
+                        *ngIf="ArticuloForm.get('titulo')?.hasError('required') && ArticuloForm.get('titulo')?.touched"
+                        class="text-danger">**COMPLETAR</span>
+                </div>
+
+                <!-- Categoria Form -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Publico</label>
+
+                    <select class="form-select" formControlName="publico">
+                        <option selected>Selecciona publico...</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Unisex">Unisex</option>
+                    </select><span
+                        *ngIf="ArticuloForm.get('publico')?.hasError('required') && ArticuloForm.get('publico')?.touched"
+                        class="text-danger">**COMPLETAR</span>
+
+                    <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+
+                    <select class="form-select" formControlName="categoria">
+                        <option selected>Selecciona una categoria...</option>
+                        <option value="Gala">Gala</option>
+                        <option value="Boda">Boda</option>
+                        <option value="Fiesta">Fiesta</option>
+                        <option value="Elegante-sport">Elegante Sport</option>
+                        <option value="Disfraces">Disfraces</option>
+                        <option value="NoCat">Otra</option>
+                    </select><span
+                        *ngIf="ArticuloForm.get('categoria')?.hasError('required') && ArticuloForm.get('categoria')?.touched"
+                        class="text-danger">**COMPLETAR</span>
+                </div>
+
+                <!-- Disponible? -- Precio? -->
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <span class="form-control m-2">Disponible</span>
+                        <input formControlName="disponible" class="form-check-input mt-0" type="checkbox" value="">
+                    </div>
+                    <div class="input-group-text">
+                        <span class="input-group-text">Precio $</span>
+                        <input formControlName="precio" type="number" class="form-control" placeholder="$ $ $">
+                        <span *ngIf="ArticuloForm.get('precio')?.hasError('required')"
+                            class="text-danger">REVISAR</span>
+                    </div>
+                </div>
+
+                <!-- Detalles del producto -->
+                <div class="input-group">
+                    <span class="input-group-text">Detalles</span>
+                    <textarea formControlName="detalle" class="form-control" aria-label="With textarea"></textarea>
+                    <span
+                        *ngIf="ArticuloForm.get('detalle')?.hasError('required') && ArticuloForm.get('detalle')?.touched"
+                        class="text-danger">**COMPLETAR</span>
+                </div>
+                <br>
+
+                <!-- Carga de Imagenes -->
+                <!-- <div *ngIf="adjuntar" class="input-group">
+                    <input type="file" class="form-control" (change)="crearListaArchivos($event)"
+                        aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                        accept="image/png, .jpeg, .jpg, image/gif" name="archivos[]" required multiple>
+                    <button class="btn btn-outline-secondary" type="button">Borrar</button>
+                    <span
+                            *ngIf="ArticuloForm.get('imagen')?.hasError('required') && ArticuloForm.get('imagen')?.touched"
+                            class="text-danger">** ADJUNTAR</span>
+                            <div class="form-text">
+                                Carga el grupo de imagenes ya optimizadas, la primer seleccion será la portada por defecto.
+                            </div> 
+            </div>-->
+
+                <br>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button [disabled]="ArticuloForm.invalid" type="submit"
+                        class="btn btn-primary btn-lg px-4 me-md-2">Elegir imagenes</button>
+                    <button type="reset" class="btn btn-outline-secondary btn-lg px-4">Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- ADJUNTA IMAGENES -->
+<div *ngIf="adjuntar" class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="../../../../assets/background.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Administrador de catalogo</h1>
+            <p class="lead">Selecciona imagenes optimizadas y con los nombres correctos de la coleccion para una optima
+                gestion del catalogo.</p>
+
+            <input type="file" class="form-control" (change)="crearListaArchivos($event)"
+                aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/png, .jpeg, .jpg, image/gif"
+                name="archivos[]" required multiple>
+            <button class="btn btn-outline-secondary" type="button">Borrar</button>
+            <span *ngIf="ArticuloForm.get('imagen')?.hasError('required') && ArticuloForm.get('imagen')?.touched"
+                class="text-danger">** ADJUNTAR</span>
+            <div class="form-text">
+                Carga el grupo de imagenes ya optimizadas, la primer seleccion será la portada por defecto.
+            </div>
+            <div>
+                <button (click)="SubirArticulo()" >CONFIRMAR</button>
+            </div>
+        </div>
+
+    </div>
+</div>

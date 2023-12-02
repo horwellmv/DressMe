@@ -1,0 +1,37 @@
+.header {
+    background: linear-gradient(rgba(131, 84, 84, 0.6),rgba(128, 65, 65, 0.6)),url('../../../../assets/background.jpg');
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;   
+    position: relative;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.nav-links, a{
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-link, a{
+    padding: 15px;
+    margin-right: 2px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+}
+
+.title{
+    color: white;
+    font-size: 36px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}

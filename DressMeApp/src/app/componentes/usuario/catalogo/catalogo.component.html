@@ -1,0 +1,74 @@
+<!-- mi tarjeta del producto -->
+
+
+
+<div class="row row-cols-1 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-0" style="justify-content:center; ">
+
+    <div *ngFor="let item of listaArticulos" class="card col-9 col-sm-4 col-md-3 m-4">
+      <img src="{{item.imagen[0]}}" class="card-img-top img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{item.titulo}}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{item.categoria}}</h6>
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalle">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+   
+    
+  </div><!-- Fila -->
+
+
+<!-- mi Modal detalle del producto -->
+<div class="modal fade" id="detalle">
+    <div class="modal-dialog">
+        <div *ngFor="let item of listaArticulos" class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{item.titulo}}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" >
+
+                <div class="row">
+                 
+                    <div class="row col-md-3 form-check-label mb-3 mt-3 ">
+                        <figure class="figure col-md-12">
+                            <img src="../../../../assets/vestido1.jpg" class="img-fluid" alt="...">
+                        </figure>
+                        <figure class="figure col-md-12">
+                            <img src="../../../../assets/vestido2.jpg" class="img-fluid" alt="...">
+                        </figure>
+                        <figure class="figure col-md-12">
+                            <img src="../../../../assets/vestido3.jpg" class="img-fluid" alt="...">
+                        </figure>
+                    </div>
+
+                    <div class="row col-md-9">
+                        <figure class="figure col-md-12">
+                            <img src="../../../../assets/vestido1.jpg" class="img-fluid" alt="...">
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"  ><a href="javascript:void(window.open('https://form.jotform.com/232656841554058',
+                    'blank',
+                    'scrollbars=yes,
+                    toolbar=no,
+                    width=700,
+                    height=500'
+                ))">AgendarTurno</a></button>
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Volver</button>
+            </div>
+
+        </div>
+    </div>
+</div>

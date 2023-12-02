@@ -1,0 +1,35 @@
+<div *ngIf="!autenticando" class="container row-cols-1 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-0">
+
+  <div class="project-name">
+    <h1>Dress Me</h1>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h2>Iniciar Sesión</h2>
+      <form (ngSubmit)="login()" [formGroup]="loginUsuario">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" formControlName="email" class="form-control" autocomplete="username">
+          <span *ngIf="loginUsuario.get('email')?.hasError('required') && loginUsuario.get('email')?.touched"
+            class="text-danger">El correo es obligatorio</span>
+          <span *ngIf="loginUsuario.get('email')?.hasError('email') && loginUsuario.get('email')?.touched"
+            class="text-danger">El coreo no es valido</span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" formControlName="password" class="form-control" autocomplete="current-password">
+          <span *ngIf="loginUsuario.get('password')?.hasError('required') && loginUsuario.get('password')?.touched"
+            class="text-danger">El password es requerido</span>
+          <span *ngIf="loginUsuario.get('password')?.hasError('minlength') && loginUsuario.get('password')?.touched"
+            class="text-danger">Debe tener mas de 6 digitos</span>
+        </div>
+        <div class="row row-cols-2">
+          <button [disabled]="loginUsuario.invalid" type="submit" class="btn btn-secondary">Iniciar Sesión</button>
+          <a class="btn btn-xs" routerLink="/catalogo">Volver</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<app-spinner *ngIf="autenticando"></app-spinner>

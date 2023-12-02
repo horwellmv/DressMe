@@ -15,11 +15,11 @@
         <div class="card-body">
             <h5 class="card-title">{{articulo.titulo}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{articulo.categoria}}</h6>
-            <button type="button" class="btn btn-primary btn-sm m-2" data-bs-toggle="modal"
+            <button type="button" (click)="modificarArticulo(articulo)" class="btn btn-primary btn-sm m-2" data-bs-toggle="modal"
                 data-bs-target="#editar-Producto">
                 Modificar
             </button>
-            <button type="button" class="btn btn-danger btn-sm m-2" id="">
+            <button type="button" (click)="borrarArticulo(articulo)" class="btn btn-danger btn-sm m-2" id="">
                 Eliminar
             </button>
         </div>

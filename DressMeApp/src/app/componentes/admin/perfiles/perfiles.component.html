@@ -1,23 +1,94 @@
 <app-navbar></app-navbar>
 
-<section>
-    <h1>User Profiles</h1>
-    <ul>
-        <li *ngFor="let user of users$ | async">
-            {{user.username}}
-        </li>
-    </ul>
-</section>
 <br>
-<section>
-    <h1>Usuarios de Firebase</h1>
-    <ul>
-        <li *ngFor="let usuario of usuarios$ | async">
-            {{usuario.nombre}},
-            {{usuario.email}},
-            
-        </li>
-    </ul>
-</section>
 
-<button (click)="addUsuario()" >Add usuario</button>
+<div class="container">
+    <div class="project-name">
+        <h1>NombreAdmin</h1>
+    </div>
+
+    <div class="row-2  col-12 mt-4">
+        <br>
+        <h2>Perfiles de inicio de sesion.</h2>
+        <br>
+        <div class="col-md">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th class="text-right">Password</th>
+                        <th class="text-right">Admin</th>
+                        <th class="text-right"></th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let perfil of perfiles$ | async" id="">
+                        <td>{{perfil.id}}</td>
+                        <td>{{perfil.nombre}}</td>
+                        <td>{{perfil.email}}</td>
+                        <td class="text-right">{{perfil.password}}</td>
+                        <td class="">
+                            <input type="checkbox" [checked]="perfil.admin">
+                        </td>
+                        <td class="text-right">
+                            <button class="btn btn-danger" (click)="eliminarPerfil(perfil)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+
+    <!-- FORMULARIO DE CREACION DE NUEVO PERFIL -->
+
+    <div class=" row card col-4">
+        <div class="card-body">
+            <h2>Nuevo Perfil</h2>
+            <form (ngSubmit)="crearPerfil()" [formGroup]="formPerfil">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control" autocomplete="name">
+                    <span *ngIf="formPerfil.get('nombre')?.hasError('required') && formPerfil.get('nombre')?.touched"
+                        class="text-danger">El nombre es obligatorio</span>
+                    <span *ngIf="formPerfil.get('nombre')?.hasError('nombre') && formPerfil.get('nombre')?.touched"
+                        class="text-danger">El nombre no es valido</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" formControlName="email" class="form-control" autocomplete="username">
+                    <span *ngIf="formPerfil.get('email')?.hasError('required') && formPerfil.get('email')?.touched"
+                        class="text-danger">El correo es obligatorio</span>
+                    <span *ngIf="formPerfil.get('email')?.hasError('email') && formPerfil.get('email')?.touched"
+                        class="text-danger">El correo no es valido</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        autocomplete="current-password">
+                    <span
+                        *ngIf="formPerfil.get('password')?.hasError('required') && formPerfil.get('password')?.touched"
+                        class="text-danger">El password es requerido</span>
+                    <span
+                        *ngIf="formPerfil.get('password')?.hasError('minlength') && formPerfil.get('password')?.touched"
+                        class="text-danger">Debe tener mas de 6 digitos</span>
+                </div>
+                <div class="mb-3 row row-cols-2">
+                    <label class="form-label">ADMIN</label>
+                    <input type="checkbox" value="true" formControlName="admin">
+                </div>
+
+                <div class="row row-cols-2">
+                    <button [disabled]="formPerfil.invalid" type="submit" class="btn btn-secondary">Crear
+                        perfil</button>
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+</div>

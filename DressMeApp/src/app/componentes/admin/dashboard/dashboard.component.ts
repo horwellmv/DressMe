@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Itienda } from 'src/app/interfaces/itienda';
+import { TiendaService } from 'src/app/servicios/tienda.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,54 +12,63 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent {
   private firestore: Firestore = inject(Firestore);
+  private fb: FormBuilder = inject(FormBuilder);
+  private tiendaService: TiendaService = inject(TiendaService);
 
-  users$: Observable<UserProfile[]>;
-  //usersCollection: CollectionReference;
+  tiendaForm!: FormGroup;
+  tiendas$!: Observable<Itienda[]>;
+  editar = false;
 
-  usuarios$: Observable<Usuarios[]>;
+  tienda: Itienda = {
+    titulo: '',
+    direccion: '',
+    footer: '',
+    email: '',
+    whatsapp: 0,
+    instagram: ''
+  }
 
-    constructor() {
-        // get a reference to the user-profile collection
-        const userProfileCollection = collection(this.firestore, 'users');
-        const usuariosCollection = collection(this.firestore, 'usuarios');
+  constructor() {
 
-        // get documents (data) from the collection using collectionData
-        this.users$ = collectionData(userProfileCollection) as Observable<UserProfile[]>;
-        this.usuarios$ = collectionData(usuariosCollection) as Observable<Usuarios[]>;
-    }
+    // Obtiene la referencia a la coleccion de la tienda
+    const tiendaCollection = collection(this.firestore, 'tienda');
 
-    pepe: Usuarios = {
-      
-      nombre: 'test1',
-      email: 'test1@gmail.com',
-      turno: new Date,
-      estado: true
-    }
-    
+    // Obtiene los datos de documentos en la coleccion
+    this.tiendas$ = collectionData(tiendaCollection) as Observable<Itienda[]>;
 
+    // recupera el formulario - Tiene validaciones de ser necesarias
+    this.tiendaForm = this.fb.group({
+      titulo: ['', [Validators.required]],
+      direccion: ['', [Validators.required]],
+      footer: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      whatsapp: ['', [Validators.required]],
+      instagram: ['', [Validators.required]],
+    })
+  }
 
+  precargarForm(tienda: Itienda) {
+    this.tiendaForm.setValue({
+      titulo: tienda.titulo,
+      direccion: tienda.direccion,
+      footer: tienda.footer,
+      email: tienda.email,
+      whatsapp: tienda.whatsapp,
+      instagram: tienda.instagram
+    })
+    this.editar= true;
+  }
 
-    async addUsuario() {
-      //if (!usuario) return;
-      try {
-        const docRef = await addDoc(collection(this.firestore, 'usuarios'), this.pepe)
-      } catch (error) {
-        console.log('error en metodo addusuarios: ', error)
-      }
-    }
+  async actualizarTienda(){
+    this.tienda = this.tiendaForm.value;
+    const path = 'tienda';
+    const id = '1HJ7lmEadr6q6VKT1Y3Q';
+
+    // Cargamos los cambios en firebase
+    const resp = await this.tiendaService.actualizarTienda(this.tienda, path, id);
+    console.log('tienda actualizada => ');
+    console.log(resp);
+    this.editar=false;
+  }
 
 }
-
-export interface UserProfile {
-  username: string;
-}
-
-export interface Usuarios {
-  id?: string;
-  nombre: string;
-  email: string;
-  turno: Date;
-  estado: boolean;
-}
-
-

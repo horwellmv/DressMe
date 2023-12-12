@@ -1,26 +1,72 @@
 <app-navbar></app-navbar>
 <br>
-<h2>Reportes...</h2>
-<br>
-<section>
-    <h1>Turnos del dia</h1>
-    <ul>
-        <li *ngFor="let user of users$ | async">
-            {{user.username}}
-        </li>
-    </ul>
-</section>
-<br>
-<section>
-    <h1>Usuarios desde Firebase</h1>
-    <ul>
-        <li *ngFor="let usuario of usuarios$ | async">
-            {{usuario.nombre}},
-            {{usuario.email}},
-            
-        </li>
-    </ul>
-</section>
+<!-- Formulario de tienda  -->
+<form aria-disabled="true" *ngFor="let tienda of tiendas$ | async" (ngSubmit)="actualizarTienda()"
+    [formGroup]="tiendaForm">
+    <fieldset>
+        <div class="container col-xxl-8 px-4 py-5">
 
-<button (click)="addUsuario()" >Add usuario</button>
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <!-- Imagen -->
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="../../../../assets/background.jpg" class="d-block mx-lg-auto img-fluid"
+                        alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                </div>
 
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-1">Administrador de tienda</h1>
+                    <br>
+
+                    <!-- Datos tienda -->
+                    <div class="input-group ">
+                        <span class="input-group-text">Titulo</span>
+                        <input class="form-control" formControlName="titulo" placeholder="{{tienda.titulo}}"
+                            aria-describedby="basic-addon1">
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Direccion</span>
+                        <input type="text" class="form-control" formControlName="direccion"
+                            placeholder="{{tienda.direccion}}" aria-describedby="basic-addon1">
+                    </div>
+
+                    <!-- Datos redes sociales -->
+                    <div class="form-control">
+                        <input type="email" class="form-control" formControlName="email" placeholder="{{tienda.email}}">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="tel" class="form-control" formControlName="whatsapp"
+                            placeholder="{{tienda.whatsapp}}">
+                        <label for="floatingPassword">WhatsApp</label>
+                    </div>
+                    <div class="form-control mb-3">
+                        <input type="url" class="form-control" formControlName="instagram"
+                            placeholder="{{tienda.instagram}}">
+                        <label for="floatingInput">Instagram</label>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="input-group">
+                    <span class="input-group-text">Texto en el Footer</span>
+                    <textarea class="form-control" formControlName="footer" placeholder="{{tienda.footer}}"
+                        aria-label="With textarea"></textarea>
+                </div>
+
+                <br>
+
+                <!-- Botones -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button *ngIf="!editar" class="btn btn-info btn-lg px-4 me-md-2"><i
+                        class="fa-solid fa-arrows-rotate fa-fw" (click)="precargarForm(tienda)"></i></button>
+                    <button [disabled]="!editar" type="submit" class="btn btn-success btn-lg px-4 me-md-2">Guardar
+                        cambios</button>
+                    <button *ngIf="editar" (click)="precargarForm(tienda)"
+                        class="btn btn-warning btn-lg px-4 me-md-2">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+</form>

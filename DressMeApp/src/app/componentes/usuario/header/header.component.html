@@ -1,26 +1,65 @@
-<header class="header">
-    <div class="container">
-        <div class="title">
-            <h1 class="title-text">Dress Me</h1>
-        </div>
-        <div class="nav-links">
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <h1>Dress-Me</h1>
 
-            
-    <a
-    href="javascript:void(
-      window.open(
-        'https://form.jotform.com/232886443932061',
-        'blank',
-        'scrollbars=yes,
-        toolbar=no,
-        width=700,
-        height=500'
-      )
-    )
-  ">
-    AgendarTurno
-  </a>
-            <a routerLink="/auth" class="nav-link">Iniciar sesión</a>
-        </div>
+    <div class="navbar" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+
+          <button style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><i
+              class="fa-brands fa-instagram fa-xl "></i></button>
+          <button style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><i
+              class="fa-brands fa-whatsapp fa-xl"></i></button>
+          <button style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><a
+              href="javascript:void(window.open('https://form.jotform.com/232886443932061','blank','scrollbars=yes,toolbar=no, width=700,height=500'))">Agendar</a></button>
+
+        </li>
+      </ul>
+
+      <button class="navbar-nav me-auto mb-2 mb-lg-0"
+        style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;" routerLink="/auth">login</button>
+
     </div>
-</header>
+  </div>
+</nav>
+
+<div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../../../../assets/header1.png" class="img-fluid w-100 " alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>Solo divertite</h1>
+        <p>De tu look nos encargamos nosotros.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../../../../assets/header2.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>No repites look!</h1>
+        <p>Con nosotros, cada ocación es especial.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../../../../assets/header3.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>No compres de nuevo!</h1>
+        <p>Ocupate de disfrutar, no de gastar</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

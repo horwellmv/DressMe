@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
 import { AngularFireModule} from '@angular/fire/compat';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +47,7 @@ import { AlquileresComponent } from './componentes/admin/alquileres/alquileres.c
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp({"projectId":"pp3-proyecto","appId":"1:1016829113014:web:1d1a77f1b660b5d9cdac17","storageBucket":"pp3-proyecto.appspot.com","apiKey":"AIzaSyDLkvdAUtikBW7ey-wPy6O9Q3H3k_MuXFc","authDomain":"pp3-proyecto.firebaseapp.com","messagingSenderId":"1016829113014","measurementId":"G-VDSZ8NQ93D"})),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

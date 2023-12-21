@@ -2,151 +2,118 @@
 
 <div class="container">
     <div class="row mt-4">
-        
-        <div class="project-name">
-            <h1>Articulos alquilados a la fecha</h1>
-        </div>
-
         <div class="col-md">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Cliente</th>
-                        <th>Articulo</th>
-                        <th class="text-right">Cantidad</th>
-                        <th class="text-right">Precio Unitario</th>
-                        <th class="text-right">Total</th>
-                        <th class="text-right"></th>
-                    </tr>
-                </thead>
+            <div class="project-name">
+                <h1>Admin turnos</h1>
+            </div>
 
-                <tbody id="">
-                    <tr>
-                        <td>1234</td>
-                        <td>Juan Manuel de Rosas</td>
-                        <td>Smokin gala masculino pierry</td>
-                        <td class="text-right">01</td>
-                        <td class="text-right">45.000</td>
-                        <td class="text-right">45.000</td>
-                        <td class="text-right"></td>
-                    </tr>
-                    <tr>
-                        <td>1344</td>
-                        <td>Elon Musk</td>
-                        <td>Traje masculino JamesBoons</td>
-                        <td class="text-right">02</td>
-                        <td class="text-right">9.000</td>
-                        <td class="text-right">18.000</td>
-                        <td class="text-right"></td>
-                    </tr>
-                    <tr>
-                        <td>1678</td>
-                        <td>Homero j Simpson</td>
-                        <td>Vestido Promavera cheers</td>
-                        <td class="text-right">01</td>
-                        <td class="text-right">75.000</td>
-                        <td class="text-right">75.000</td>
-                        <td class="text-right"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <br>
+            <h2>Turnos</h2>
+            <br>
+            <div class="col-md">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <!-- <th>ID</th> -->
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th class="text-right">Fecha</th>
+                            <th class="text-right">Hora</th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
 
-            <button id="" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#agregar-articulo">Agregar
-                registro</button>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let turno of turnos$ | async" id="">
+                            <!-- <td>{{turno.id}}</td> -->
+                            <td>{{turno.nombre}}</td>
+                            <td>{{turno.email}}</td>
+                            <td>{{turno.telefono}}</td>
+                            <td>{{turno.fecha}}</td>
+                            <td>{{turno.hora}}</td>
+                            <td></td>
+                            <td class="text-right" style="margin-left: 6px;">
+                                <i class="fa-solid fa-pen-to-square text-info" (click)="editarTurno(turno)"></i>
+                            </td>
+                            <td class="text-right" style="margin-left: 6px;">
+                                <i class="fa-solid fa-trash text-danger" (click)="eliminarTurno(turno)"></i>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 
-</div>
+    <br>
 
 
+    <!-- FORMULARIO DE CREACION DE NUEVO TURNO -->
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md">
+                <div class="card-body">
+                    <h2>{{ edicionActiva ? 'Editar Turno' : 'Nuevo Turno' }}</h2>
+                    <form (ngSubmit)="guardarEdicion()" [formGroup]="formTurno">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" formControlName="nombre" class="form-control" autocomplete="name">
+                            <span
+                                *ngIf="formTurno.get('nombre')?.hasError('required') && formTurno.get('nombre')?.touched"
+                                class="text-danger">El nombre es obligatorio</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" formControlName="email" class="form-control" autocomplete="username">
+                            <span
+                                *ngIf="formTurno.get('email')?.hasError('required') && formTurno.get('email')?.touched"
+                                class="text-danger">El correo es obligatorio</span>
+                            <span *ngIf="formTurno.get('email')?.hasError('email') && formTurno.get('email')?.touched"
+                                class="text-danger">El correo no es válido</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input type="text" formControlName="telefono" class="form-control" pattern="\d{10}"
+                                placeholder="Ingrese el teléfono">
+                            <span
+                                *ngIf="formTurno.get('telefono')?.hasError('pattern') && formTurno.get('telefono')?.touched"
+                                class="text-danger">Ingrese un número de teléfono válido (10 dígitos).</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" formControlName="fecha" class="form-control">
+                            <span
+                                *ngIf="formTurno.get('fecha')?.hasError('required') && formTurno.get('fecha')?.touched"
+                                class="text-danger">La fecha es obligatoria</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Hora</label>
+                            <input type="time" formControlName="hora" class="form-control">
+                            <span *ngIf="formTurno.get('hora')?.hasError('required') && formTurno.get('hora')?.touched"
+                                class="text-danger">La hora es obligatoria</span>
+                        </div>
+                        <input type="hidden" formControlName="id">
 
-<!-- Modal (Agregar) -->
-<div class="modal fade" id="agregar-articulo">
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Agregar registro de Alquiler</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div *ngIf="!edicionActiva">
+                            <!-- Campos adicionales para la creación de un nuevo turno si no está en modo de edición -->
+                            <!-- ... (otros campos adicionales para la creación) ... -->
+                        </div>
+                        <button type="submit" class="btn btn-success" (click)="guardarEdicion">{{ edicionActiva ?
+                            'Guardar Cambios' : 'Crear Turno' }}</button>
+                        <span style="margin: 0 5px;"></span> <!-- Espacio entre los botones -->
+                        <button type="button" class="btn btn-danger" (click)="cancelarEdicion()">Cancelar</button>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
 
-                <div class="form-group">
-                    <label>Artiulo:</label>
-                    <select class="form-control" id="">
-
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label>Precio:</label>
-                        <input type="number" id="" class="form-control" placeholder="" min="1">
-                    </div>
-                </div>
-                <div class="form-group row mt-3">
-                    <label class="col-lg-3 col-form-label">Fecha de alquiler:</label>
-                    <div class="col-lg-9">
-                        <input type="date" class="form-control" id="">
-                    </div>
-                </div>
-                <div class="form-group row mt-3">
-                    <label class="col-lg-3 col-form-label">Fecha de entrega:</label>
-                    <div class="col-lg-9">
-                        <input type="date" class="form-control" id="">
-                    </div>
-                </div>
-
-                <div class="form-group row mt-3">
-                    <label class="col-lg-3 col-form-label">Cliente:</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" id="">
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="" class="btn btn-success">Confirmar</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            </div>
         </div>
     </div>
-</div>
 
+    <br>
 
-<!-- Modal Factura -->
-<div class="modal fade" id="facturar">
-    <div class="modal-dialog" style="max-width: 600px">
-        <div class="modal-content">
-            <div class="modal-header m-3">
-                <h4 class="modal-title">Factura N| 000-00000-00000</h4>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-footer">
-                <button id="" class="btn btn-primary">Confirmar Factura</button>
-                <button id="" class="btn btn-success m-2">Confirmar e Imprimir Factura</button>
-                <button id="" class="btn btn-warning m-2" data-bs-toggle="modal"
-                    data-bs-target="#descartar">Descartar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- ModalConfirmarBorrar -->
-<div class="modal fade" id="descartar">
-    <div class="modal-dialog" style="max-width: 600px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Esta accion elimina la factura en proceso</h4>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-footer">
-                <button id="" class="btn btn-warning">Cancelar</button>
-                <button class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-            </div>
-        </div>
-    </div>
 </div>

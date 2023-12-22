@@ -30,7 +30,7 @@ const routes: Routes = [
  
   //AUTH
   {path: 'auth/dashboard',component: DashboardComponent,             canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path: 'auth/alquileres',component: AlquileresComponent,             canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  {path: 'auth/turnos',component: AlquileresComponent,             canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   
   {path: 'auth/catalogo',component: AdminCatalogoComponent,             canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   {path: 'auth/caja',component: CajaComponent,             canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},

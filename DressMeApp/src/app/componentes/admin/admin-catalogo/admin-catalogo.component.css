@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa; /* Fondo crudo lindo para la página principal */
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* Fondo blanco para las tarjetas de productos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #343a40; /* Color oscuro para el título de la tarjeta */
+}
+
+.card-subtitle {
+    color: #6c757d; /* Color gris para la subetiqueta de la tarjeta */
+}
+
+.btn-primary{
+    background-color: #007bff; /* Color azul brillante para botones de acción */
+    border-color: #007bff;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+}
+.btn-danger {
+    background-color: #ff0000; /* Color azul brillante para botones de acción */
+    border-color: #ff0000;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+}

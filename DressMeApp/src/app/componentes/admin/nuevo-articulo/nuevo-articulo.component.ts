@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,9 @@ import { ArticuloService } from 'src/app/servicios/articulo.service';
   styleUrls: ['./nuevo-articulo.component.css']
 })
 
-export class NuevoArticuloComponent {
+export class NuevoArticuloComponent implements OnInit {
+  private modalRef: any;
+  seccionActual: 'formulario' | 'imagenes' = 'formulario';
 
   private firestore: Firestore = inject(Firestore);
   private articuloServ : ArticuloService = inject(ArticuloService)
@@ -123,5 +125,11 @@ export class NuevoArticuloComponent {
   async enviarObjFirebase(art: Iarticulo) {
     const respuesta = await this.articuloServ.agregarArticulo(art);
     // console.log(respuesta);
+  }
+  irASeccionImagenes() {
+    this.seccionActual = 'imagenes';
+  }
+  volverASeccionFormulario() {
+    this.seccionActual = 'formulario';
   }
 }

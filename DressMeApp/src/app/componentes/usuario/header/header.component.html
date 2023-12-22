@@ -1,13 +1,13 @@
-<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+<nav  *ngFor="let tienda of tiendas$|async" class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <h1>Dress-Me</h1>
+    <h1>{{tienda.titulo}}</h1>
 
     <div class="navbar" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
 
-          <button style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><i
+          <button  style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><i
               class="fa-brands fa-instagram fa-xl "></i></button>
           <button style="border: 1px solid silver; border-radius: 0.25em; padding: 0.5em;"><i
               class="fa-brands fa-whatsapp fa-xl"></i></button>

@@ -43,8 +43,8 @@ export class CajaComponent implements OnInit {
 
     // Suma las ventas desde facturas en firestore
     this.facturas$.forEach(element => {
-      console.log(element.map(fact => this.totalVentas = this.totalVentas + fact.total));
-      console.log(this.totalVentas);
+      element.map(fact => this.totalVentas = this.totalVentas + fact.total);
+      //console.log(this.totalVentas);
     });
   }
 
@@ -68,7 +68,6 @@ export class CajaComponent implements OnInit {
         cantidad: this.cantidadSeleccionada,
         precioUnitario: articulo.precio,
         total: articulo.precio * this.cantidadSeleccionada,
-        
         
       };
 

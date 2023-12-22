@@ -1,14 +1,14 @@
 <!-- FORMULARIO -->
 
 <form  *ngIf="!adjuntar" (ngSubmit)="crearForm()" [formGroup]="ArticuloForm">
-    <div class="container col-xxl-8 px-4 py-5">
+    <div class="container col-xxl-8">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
                 <img src="../../../../assets/background.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
                     width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Administrador de catalogo</h1>
+                <h1 class="nombre">Administrador de catalogo</h1>
                 <p class="lead">Datos del nuevo articulo</p>
 
                 <!-- Titulo -->
@@ -71,21 +71,7 @@
                         *ngIf="ArticuloForm.get('detalle')?.hasError('required') && ArticuloForm.get('detalle')?.touched"
                         class="text-danger">**COMPLETAR</span>
                 </div>
-                <br>
-
-                <!-- Carga de Imagenes -->
-                <!-- <div *ngIf="adjuntar" class="input-group">
-                    <input type="file" class="form-control" (change)="crearListaArchivos($event)"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-                        accept="image/png, .jpeg, .jpg, image/gif" name="archivos[]" required multiple>
-                    <button class="btn btn-outline-secondary" type="button">Borrar</button>
-                    <span
-                            *ngIf="ArticuloForm.get('imagen')?.hasError('required') && ArticuloForm.get('imagen')?.touched"
-                            class="text-danger">** ADJUNTAR</span>
-                            <div class="form-text">
-                                Carga el grupo de imagenes ya optimizadas, la primer seleccion será la portada por defecto.
-                            </div> 
-            </div>-->
+                
 
                 <br>
 
@@ -120,7 +106,7 @@
                 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <button class="btn btn-primary me-md-2" (click)="SubirArticulo()">CONFIRMAR</button>
-                    <button type="button" class="btn btn-secondary">Cerrar</button>
+                    <button type="reset"  (click)="eliminarForm()" class="btn btn-secondary">Cerrar</button>
                 </div>
             </form>
         </div>

@@ -9,6 +9,7 @@ import { ArticuloService } from 'src/app/servicios/articulo.service';
 export class CatalogoComponent {
   
   listaArticulos: any []=[]; 
+  articuloSeleccionado: any = null;
 
   constructor(private articuloServ: ArticuloService){}
   
@@ -17,6 +18,9 @@ export class CatalogoComponent {
       console.log('Articulos recibidios desde Firestore => ', articulos);
       this.listaArticulos = articulos.filter(item => item.disponible); // Filtra solo los artículos disponibles
     });
+  }
+  verDetalle(articulo: any) {
+    this.articuloSeleccionado = articulo;
   }
 
 }

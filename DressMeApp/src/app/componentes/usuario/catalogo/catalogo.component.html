@@ -9,9 +9,9 @@
       <div class="card-body">
         <h5 class="card-title">{{item.titulo}}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{item.categoria}}</h6>
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalle">
-          Ver detalle
-        </button>
+        <button type="button" (click)="verDetalle(item)" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalle">
+            Ver detalle
+          </button>
       </div>
     </div>
    
@@ -22,38 +22,22 @@
 <!-- mi Modal detalle del producto -->
 <div class="modal fade" id="detalle">
     <div class="modal-dialog">
-        <div *ngFor="let item of listaArticulos" class="modal-content">
-
+        <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">{{item.titulo}}</h4>
+                <h4 class="modal-title">{{articuloSeleccionado?.titulo}}</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <!-- Modal body -->
-            <div class="modal-body" >
-
+            <div class="modal-body">
                 <div class="row">
-                 
-                    <div class="row col-md-3 form-check-label mb-3 mt-3 ">
+                    <div class="row col-md-12 form-check-label mb-3 mt-3">
                         <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido1.jpg" class="img-fluid" alt="...">
-                        </figure>
-                        <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido2.jpg" class="img-fluid" alt="...">
-                        </figure>
-                        <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido3.jpg" class="img-fluid" alt="...">
-                        </figure>
-                    </div>
-
-                    <div class="row col-md-9">
-                        <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido1.jpg" class="img-fluid" alt="...">
+                            <img *ngIf="articuloSeleccionado && articuloSeleccionado.imagen && articuloSeleccionado.imagen.length > 0"
+                                [src]="articuloSeleccionado.imagen[0]" class="img-fluid" alt="...">
                         </figure>
                     </div>
                 </div>
-
             </div>
 
             <!-- Modal footer -->

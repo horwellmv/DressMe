@@ -1,50 +1,53 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-    <div class="row mt-4">
-        <div class="col-md">
-            <div class="project-name">
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="project-name text-center">
                 <h1>Admin turnos</h1>
             </div>
 
             <br>
             <h2>Turnos</h2>
             <br>
-            <div class="col-md">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- <th>ID</th> -->
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Telefono</th>
-                            <th class="text-right">Fecha</th>
-                            <th class="text-right">Hora</th>
-                            <th class="text-right"></th>
-                            <th class="text-right"></th>
+            <div class="col-md-12">
+                <div class="table-responsive">
 
-                        </tr>
-                    </thead>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <!-- <th>ID</th> -->
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th class="text-right">Fecha</th>
+                                <th class="text-right">Hora</th>
+                                <th class="text-right"></th>
+                                <th class="text-right"></th>
 
-                    <tbody>
-                        <tr *ngFor="let turno of turnos$ | async" id="">
-                            <!-- <td>{{turno.id}}</td> -->
-                            <td>{{turno.nombre}}</td>
-                            <td>{{turno.email}}</td>
-                            <td>{{turno.telefono}}</td>
-                            <td>{{turno.fecha}}</td>
-                            <td>{{turno.hora}}</td>
-                            <td></td>
-                            <td class="text-right" style="margin-left: 6px;">
-                                <i class="fa-solid fa-pen-to-square text-info" (click)="editarTurno(turno)"></i>
-                            </td>
-                            <td class="text-right" style="margin-left: 6px;">
-                                <i class="fa-solid fa-trash text-danger" (click)="eliminarTurno(turno)"></i>
-                            </td>
+                            </tr>
+                        </thead>
 
-                        </tr>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <tr *ngFor="let turno of turnos$ | async" id="">
+                                <!-- <td>{{turno.id}}</td> -->
+                                <td>{{turno.nombre}}</td>
+                                <td>{{turno.email}}</td>
+                                <td>{{turno.telefono}}</td>
+                                <td>{{turno.fecha}}</td>
+                                <td>{{turno.hora}}</td>
+                                <td></td>
+                                <td class="text-right" style="margin-left: 6px;">
+                                    <i class="fa-solid fa-pen-to-square text-info" (click)="editarTurno(turno)"></i>
+                                </td>
+                                <td class="text-right" style="margin-left: 6px;">
+                                    <i class="fa-solid fa-trash text-danger" (click)="eliminarTurno(turno)"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -54,9 +57,8 @@
 
 
     <!-- FORMULARIO DE CREACION DE NUEVO TURNO -->
-    <div class="container">
-        <div class="row mt-4">
-            <div class="col-md">
+    <div class="col-md-12 mt-4">
+        <div class="card">
                 <div class="card-body">
                     <h2>{{ edicionActiva ? 'Editar Turno' : 'Nuevo Turno' }}</h2>
                     <form (ngSubmit)="guardarEdicion()" [formGroup]="formTurno">
@@ -109,7 +111,6 @@
                         <button type="button" class="btn btn-danger" (click)="cancelarEdicion()">Cancelar</button>
                     </form>
                 </div>
-            </div>
 
         </div>
     </div>

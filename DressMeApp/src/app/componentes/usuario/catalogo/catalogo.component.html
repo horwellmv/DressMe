@@ -12,6 +12,7 @@
         <button type="button" (click)="verDetalle(item)" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalle">
             Ver detalle
           </button>
+          
       </div>
     </div>
    
@@ -36,6 +37,9 @@
                             <img *ngIf="articuloSeleccionado && articuloSeleccionado.imagen && articuloSeleccionado.imagen.length > 0"
                                 [src]="articuloSeleccionado.imagen[0]" class="img-fluid" alt="...">
                         </figure>
+                        <div class="col-md-6">
+                            <p class="precio-grande">Precio:$ {{articuloSeleccionado?.precio}}</p>
+                        </div>
                     </div>
                 </div>
             </div>

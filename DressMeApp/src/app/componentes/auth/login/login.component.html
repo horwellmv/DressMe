@@ -1,9 +1,10 @@
-<div *ngIf="!autenticando" class="container row-cols-1 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-0">
+<div *ngIf="!autenticando" class="container-fluid row-fluid row-cols-1 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 ">
+  
 
-  <div class="project-name">
-    <h1>Dress Me</h1>
+  <div class="project-name col-sm-6 col-md-6">
+    <h1 routerLink="/login" style="cursor: pointer;">Dress Me</h1>
   </div>
-  <div class="card">
+  <div class="card col-sm-6 col-md-6 col-lg-3">
     <div class="card-body">
       <h2>Iniciar Sesión</h2>
       <form (ngSubmit)="login()" [formGroup]="loginUsuario">

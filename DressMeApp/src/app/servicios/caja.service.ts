@@ -3,6 +3,7 @@ import { Observable, of, from } from 'rxjs';
 import { Iarticulo } from '../interfaces/iarticulo';
 import { Firestore, collection, getDoc, collectionData, DocumentReference, addDoc, DocumentData } from '@angular/fire/firestore';
 import { catchError, map } from 'rxjs/operators';
+import { Ifacturas } from '../interfaces/ifacturas';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,16 @@ export class CajaService {
   setSelectedArticulo(articuloRef: DocumentReference<DocumentData>): void {
     this.selectedArticuloRef = articuloRef;
   }
-
+  traerfacturas(): Observable<Ifacturas[]> {
+    const facturalosRef = collection(this.firestore, 'facturas');
+    return collectionData(facturalosRef, { idField: 'id' }) as Observable<Ifacturas[]>;
+  }
 
   traerArticulos(): Observable<Iarticulo[]> {
     const articulosRef = collection(this.firestore, 'articulos');
     return collectionData(articulosRef, { idField: 'id' }) as Observable<Iarticulo[]>;
   }
+
   traerArticuloPorId(articuloRef: DocumentReference<DocumentData>): Observable<Iarticulo | undefined> {
     return from(getDoc(articuloRef)).pipe(
       catchError((error: any) => {

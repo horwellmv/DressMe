@@ -1,18 +1,26 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
 
   <div class="row mt-4">
-    <div class="col-md">
-      <h1 class="nombre">Caja DressMe</h1>
+    <h1 class="nombre">Caja DressMe</h1>
+    <div class="col-2">
+      <span>total ventas: $ </span>
+      <h3>{{totalVentas}}</h3>
+    </div>
+  <br>
+    <div class="col-md-6">
+      
+
       <br>
-      <h2>Articulos</h2>
+
       <table class="table table-striped">
         <thead>
           <tr>
             <th>Articulo</th>
             <th class="text-right">Precio</th>
-            <th>Seleccionar</th>
+            <th class="text-left">Seleccionar disponibles</th>
           </tr>
         </thead>
         <tbody>
@@ -20,68 +28,86 @@
             <td>{{ articulo.titulo }}</td>
             <td>{{ articulo.precio }}</td>
             <td>
-              <input type="checkbox" [(ngModel)]="articulo.selected" (change)="seleccionarArticulo(articulo)">
+              <input disabled="{{!articulo.disponible}}" type="checkbox" [(ngModel)]="articulo.selected"
+                (change)="seleccionarArticulo(articulo)">
             </td>
           </tr>
         </tbody>
       </table>
 
       <!-- Botón para generar factura -->
-      <button class="btn btn-success m-2" (click)="abrirFormularioAgregarArticulos()">Generar Factura</button>
+      <button class="btn btn-success m-2" (click)="abrirFormularioAgregarArticulos()">Generar registro</button>
     </div>
   </div>
-</div>
-<div class="factura-container">
-  <div class="factura-form">
-    <div class="row mt-4">
-      <div class="col-md">
-        <!-- Tu formulario para agregar artículos -->
 
-        <div *ngIf="mostrarFormularioAgregarArticulos">
-          <form [formGroup]="facturaForm" (ngSubmit)="agregarAFactura()">
 
-            <!-- Aquí van tus campos de formulario -->
-            <div class="factura-header">
-              <h2>Factura de Compra</h2>
-              <div class="factura-info">
-                <label class="col-form-label"> N°:</label>
-                <span>{{ facturaForm.get('numeroFactura')?.value }}</span>
-              </div>
-            </div>
-            <div class="factura-detalle">
-              <div class="form-group">
-                <label for="articulo">Artículo:</label>
-                <ul>
-                  <li *ngFor="let item of facturaItems">{{ item.articulo }} - ${{ item.precioUnitario }}</li>
-                </ul>
-              </div>
-              <div class="form-group">
-                <label for="fechaAlquiler">Fecha de alquiler:</label>
-                <input type="date" formControlName="fechaAlquiler" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="fechaEntrega">Fecha de entrega:</label>
-                <input type="date" formControlName="fechaEntrega" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="cliente">Cliente:</label>
-                <input type="text" formControlName="cliente" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="total">Total:</label>
-                <div class="input-group">
-                  <span class="input-group-text">$</span>
-                  <input type="text" id="total" class="form-control" [value]="calcularPrecioTotal()" readonly>
+  <div class="factura-container">
+    
+    <div class="factura-form">
+      <div class="row mt-4">
+        <div class="col-md-8">
+          <!-- Tu formulario para agregar artículos -->
+
+          <div *ngIf="mostrarFormularioAgregarArticulos">
+            <form [formGroup]="facturaForm" (ngSubmit)="agregarAFactura()">
+
+              <!-- Aquí van tus campos de formulario -->
+              <div class="factura-header">
+                <h2>Orden de Alquiler</h2>
+                <div class="factura-info">
+                  <label class="col-form-label"> N°:</label>
+                  <span style="font-weight:bold;">{{ facturaForm.get('numeroFactura')?.value }}</span>
                 </div>
               </div>
-            </div>
-            <!-- Puedes agregar más campos según tus necesidades -->
-            <button type="submit" class="btn btn-success">Generar</button>
-            <button type="button" class="btn btn-danger" (click)="cerrarFormularioAgregarArticulos()">Cancelar</button>
-          </form>
-        </div>
+              <div class="factura-detalle">
+                <div class="form-group">
+                  <label for="articulo">Artículo:</label>
+                  <ul>
+                    <li style="font-weight:bold;" *ngFor="let item of facturaItems">{{ item.articulo }} - ${{
+                      item.precioUnitario }}</li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label for="fechaAlquiler">Fecha de alquiler:</label>
+                  <input type="date" formControlName="fechaAlquiler" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="fechaEntrega">Fecha de entrega:</label>
+                  <input type="date" formControlName="fechaEntrega" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="cliente">Cliente:</label>
+                  <input type="text" formControlName="cliente" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="total">Total:</label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input style="font-weight:bold;" type="text" id="total" class="form-control"
+                      [value]="calcularPrecioTotal()" readonly>
+                  </div>
+                </div>
+              </div>
+              
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="../../../../assets/qr.png" class="d-block mx-lg-auto img-fluid" 
+          width="700" height="500" loading="lazy">
       </div>
 
+              <br>
+              <!-- Puedes agregar más campos según tus necesidades -->
+              <button class="m-2" type="submit" class="btn btn-success">Facturar</button>
+              <button type="reset" class="btn btn-danger" (click)="cerrarFormularioAgregarArticulos()">Cancelar</button>
+              <br>
+            </form>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+<br>
+
+</div>
+<br>
 </div>

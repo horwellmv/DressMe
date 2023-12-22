@@ -15,7 +15,7 @@ export class CatalogoComponent {
   ngOnInit(): void {
     this.articuloServ.traerArticulos().subscribe(articulos =>{
       console.log('Articulos recibidios desde Firestore => ', articulos);
-      this.listaArticulos = articulos;
+      this.listaArticulos = articulos.filter(item => item.disponible); // Filtra solo los artículos disponibles
     });
   }
 

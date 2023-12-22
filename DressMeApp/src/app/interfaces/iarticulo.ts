@@ -6,7 +6,7 @@ export interface Iarticulo {
     categoria: String;
     detalle: String;
     imagen:string[];
-    precio: Number;
+    precio: string | number;
     disponible: Boolean;
     fecha: Date;
 }

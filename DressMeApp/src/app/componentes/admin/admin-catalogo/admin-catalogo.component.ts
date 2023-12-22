@@ -1,35 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Iarticulo } from 'src/app/interfaces/iarticulo';
 import { ArticuloService } from 'src/app/servicios/articulo.service';
+
 @Component({
   selector: 'app-admin-catalogo',
   templateUrl: './admin-catalogo.component.html',
   styleUrls: ['./admin-catalogo.component.css']
 })
-export class AdminCatalogoComponent {
+export class AdminCatalogoComponent implements OnInit {
 
-  listaArticulos: Iarticulo[] = []; 
+  listaArticulos: Iarticulo[] = [];
+  articuloSeleccionado: Iarticulo | null = null;
 
-  constructor(private articuloServ: ArticuloService){}
-  
+  constructor(private articuloServ: ArticuloService) {}
+
   ngOnInit(): void {
     this.traerArticulos();
   }
 
-  traerArticulos(){
-    this.articuloServ.traerArticulos().subscribe(articulos =>{
+  traerArticulos() {
+    this.articuloServ.traerArticulos().subscribe(articulos => {
       this.listaArticulos = articulos;
-      // console.log(articulos);
     });
   }
 
-  modificarArticulo(articulo : Iarticulo){
-
+  modificarArticulo(articulo: Iarticulo) {
+    this.articuloSeleccionado = { ...articulo };
   }
 
-  async borrarArticulo(articulo: Iarticulo){
-    const respuesta =await this.articuloServ.borrarArticulo(articulo);
-    console.log('respuesta del metodo BorrarArticulo',respuesta)
+  async guardarCambios() {
+    if (this.articuloSeleccionado) {
+      try {
+        await this.articuloServ.actualizarArticulo(this.articuloSeleccionado);
+        console.log('Cambios guardados');
+        this.traerArticulos();
+      } catch (error) {
+        console.error('Error al guardar cambios:', error);
+      }
+    }
+    this.articuloSeleccionado = null;
   }
 
+  async borrarArticulo(articulo: Iarticulo) {
+    const respuesta = await this.articuloServ.borrarArticulo(articulo);
+    console.log('respuesta del metodo BorrarArticulo', respuesta);
+    this.traerArticulos();
+  }
+  
 }

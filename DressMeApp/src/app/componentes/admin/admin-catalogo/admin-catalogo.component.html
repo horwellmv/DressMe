@@ -28,60 +28,68 @@
 
 
     <!-- mi Modal detalle del producto -->
-    <div class="modal fade" id="editar-Producto">
-        <div class="modal-dialog">
-            <div  class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">titulo</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-
-                    <div class="row">
-
-                        <!-- <div class="row col-md-3 form-check-label mb-3 mt-3 ">
-                        <figure *ngFor="let item of imagenes" class="figure col-md-12">
-                            <img [src]="item.name" class="img-fluid" alt="...">
-                        </figure>
-                        <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido2.jpg" class="img-fluid" alt="...">
-                        </figure>
-                        <figure class="figure col-md-12">
-                            <img src="../../../../assets/vestido3.jpg" class="img-fluid" alt="...">
-                        </figure>
-                    </div> -->
-
-                        <div class="row col-md-12">
-                            <figure *ngFor="let item of listaArticulos" class="figure col-md-6">
-                                <img [src]="item.imagen[0]" class="img-fluid" alt="...">
-                            </figure>
-                        </div>
-                    </div>
-                    <div>
-                        <input type="file">
-                    </div>
-
-                </div>
-
-                <!-- Modal footer -->
-
-                <div class="modal-footer">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="disponible" checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Mostrar como disponible
-                        </label>
-                    </div>
-
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"
-                        routerLink="/admin-catalogo">Guardar</button>
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-
-            </div>
+<!-- Agrega el siguiente contenido al final de tu archivo -->
+<div class="modal fade" id="editar-Producto">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{ articuloSeleccionado?.titulo }}</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="row col-md-12">
+              <figure class="figure col-md-6">
+                <img *ngIf="articuloSeleccionado && articuloSeleccionado.imagen && articuloSeleccionado.imagen.length > 0" [src]="articuloSeleccionado.imagen[0]" class="img-fluid" alt="...">
+              </figure>
+            </div>
+          </div>
+          <div *ngIf="articuloSeleccionado">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título:</label>
+              <input type="text" id="titulo" class="form-control" [(ngModel)]="articuloSeleccionado.titulo">
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label">Categoría:</label>
+              <select id="categoria" class="form-select" [(ngModel)]="articuloSeleccionado.categoria">
+                <option selected>Selecciona una categoría...</option>
+                <option value="Gala">Gala</option>
+                <option value="Boda">Boda</option>
+                <option value="Fiesta">Fiesta</option>
+                <option value="Elegante-sport">Elegante Sport</option>
+                <option value="Disfraces">Disfraces</option>
+                <option value="NoCat">Otra</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio:</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="text" id="precio" class="form-control" [(ngModel)]="articuloSeleccionado.precio">
+              </div>            
+            </div>  
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <div class="form-check">
+            <input *ngIf="articuloSeleccionado" class="form-check-input" type="checkbox" [(ngModel)]="articuloSeleccionado.disponible" id="disponible">
+            <label class="form-check-label" for="disponible">
+              Mostrar como disponible
+            </label>
+          </div>
+          <button type="button" class="btn btn-outline-primary" (click)="guardarCambios()" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+        </div>
+      
     </div>
+  </div>
+  
+  
+  
+  
+  

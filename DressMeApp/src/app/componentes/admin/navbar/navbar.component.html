@@ -1,9 +1,9 @@
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+<nav *ngFor="let tienda of tiendas$|async"  class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/auth/dashboard">
             <img src="../../../../assets/home.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            DressMe
+            {{tienda.titulo}}
         </a>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

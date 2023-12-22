@@ -46,7 +46,7 @@ export class NuevoArticuloComponent implements OnInit {
       publico: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
       detalle: ['Sin detalles.'],
-      imagen: [[''], [Validators.required]],
+      imagen: [[''], []],
       disponible: [true],
       precio: [0, [Validators.required]],
     })
@@ -60,6 +60,10 @@ export class NuevoArticuloComponent implements OnInit {
   async crearForm() {
     this.adjuntar = true;
     console.log("Ejecutando crearForm() => valores del form: ", this.ArticuloForm.value);  // Este es un test Unitario
+  }
+
+  eliminarForm(){
+    this.adjuntar= false;
   }
 
   // EJECUTA AL SELECCIONAR LOS IMPUT DE IMAGENES

@@ -1,0 +1,51 @@
+
+  body {
+    background-color: #f8f9fa; /* Fondo crudo lindo para la página */
+  }
+
+  .container {
+    margin-top: 20px;
+  }
+
+  .project-name h1 {
+    color: #343a40; /* Color oscuro para el nombre del proyecto */
+  }
+
+  table {
+    background-color: #ffffff; /* Fondo blanco para la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    text-align: center;
+  }
+
+  .btn-danger {
+    background-color: #dc3545; /* Color rojo para el botón de peligro */
+    border-color: #dc3545;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+  }
+
+  .card {
+    margin-top: 20px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  h2 {
+    color: #343a40; /* Color oscuro para los encabezados h2 */
+  }
+
+  .form-label {
+    color: #343a40; /* Color oscuro para las etiquetas del formulario */
+  }
+
+  .btn-secondary {
+    background-color: #6c757d; /* Color gris para los botones secundarios */
+    color: #ffffff; /* Texto blanco para mayor contraste */
+  }
+
+  /* Puedes agregar estilos adicionales según tus preferencias */
+

@@ -1,0 +1,72 @@
+body {
+    background-color: #f5f5f5; /* Un tono crudo lindo */
+}
+
+.container {
+    background-color: #ffffff; /* Fondo blanco para resaltar el contenido */
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.project-name h1 {
+    color: #343a40; /* Color oscuro para el nombre del proyecto */
+}
+
+h2 {
+    color: #007bff; /* Color azul brillante para los encabezados h2 */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Línea separadora gris claro */
+}
+
+.form-label {
+    color: #343a40; /* Color oscuro para las etiquetas del formulario */
+}
+
+.btn-success {
+    background-color: #28a745; /* Color verde para el botón de éxito */
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Color rojo para el botón de peligro */
+    border-color: #dc3545;
+}
+.modal-content {
+    background-color: #ffffff; /* Fondo blanco para el contenido del modal */
+}
+
+.modal-title {
+    color: #343a40; /* Color oscuro para el título del modal */
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-label {
+    color: #343a40; /* Color oscuro para las etiquetas del formulario */
+}
+
+.btn-outline-primary,
+.btn-outline-dark {
+    border-color: #007bff; /* Borde azul brillante para botones de acción en el modal */
+    color: #007bff;
+}
+
+.form-check-input:checked {
+    background-color: #007bff; /* Color de fondo azul brillante para el checkbox seleccionado */
+}
+
+.form-check-label {
+    color: #343a40; /* Color oscuro para la etiqueta del checkbox */
+}

@@ -1,0 +1,82 @@
+
+  body {
+    background-color: #f8f9fa; /* Fondo crudo lindo para la página */
+  }
+
+  .container {
+    margin-top: 20px;
+  }
+
+  .nombre {
+    color: #343a40; /* Color oscuro para el nombre */
+  }
+
+  h3 {
+    color: #007bff; /* Color azul brillante para los totales */
+  }
+
+  .table {
+    background-color: #ffffff; /* Fondo blanco para la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .table th, .table td {
+    text-align: center;
+  }
+
+  .btn-success {
+    background-color: #28a745; /* Color verde para el botón de éxito */
+    border-color: #28a745;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+  }
+
+  .factura-container {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .factura-form {
+    margin-top: 20px;
+  }
+
+  .factura-header h2 {
+    color: #343a40; /* Color oscuro para el encabezado de la factura */
+  }
+
+  .factura-info {
+    font-weight: bold;
+  }
+
+  .factura-detalle {
+    margin-top: 20px;
+  }
+
+  .factura-detalle label {
+    color: #343a40; /* Color oscuro para las etiquetas del detalle de factura */
+  }
+
+  .factura-detalle ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .factura-detalle li {
+    font-weight: bold;
+  }
+
+  #total {
+    font-weight: bold;
+  }
+
+  .btn-danger {
+    background-color: #dc3545; /* Color rojo para el botón de peligro */
+    border-color: #dc3545;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+
+  

@@ -70,3 +70,6 @@ th, td {
 .form-check-label {
     color: #343a40; /* Color oscuro para la etiqueta del checkbox */
 }
+i{
+    cursor:pointer
+}

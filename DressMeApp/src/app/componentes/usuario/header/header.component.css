@@ -11,3 +11,19 @@ img {
     width: auto;
     max-height: 600px;
 }
+
+p {
+   
+    font-family: 'TuFuentePreferida', sans-serif;
+    font-size: 20px; 
+    color: #ffffff; 
+    font: bold;
+  }
+  h1{
+    color: #ffffff; 
+
+  }
+  .titulo{
+    color: #0c0202; 
+
+  }
